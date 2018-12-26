@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RecipeRadar</string>
+    <string name="title_activity_try">tryActivity</string>
 </resources>
