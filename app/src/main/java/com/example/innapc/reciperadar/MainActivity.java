@@ -69,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful() && (isAdmin(Email))){//if login succesful and user is admin
+                        if (task.isSuccessful() && (isAdmin(Email))){//if login successful and user is admin
                             currentUser = mAuth.getCurrentUser();
                             finish();
                             startActivity(new Intent(getApplicationContext(),
                                     AdminActivity.class));
                         }
-                        else if(task.isSuccessful() && (!isAdmin(Email))){//if login succesful and user is not admin
+                        else if(task.isSuccessful() && (!isAdmin(Email))){//if login successful and user is not admin
                             currentUser = mAuth.getCurrentUser();
                             finish();
                             startActivity(new Intent(getApplicationContext(),
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isAdmin(@NonNull String Email){
         boolean isadmin=false;
         String admin1="inna.yakubov1996@gmail.com";
-        String admin2="Annaharonov@gmail.com";
+        String admin2="annaharonov@gmail.com";
         String admin3="orenisabella@gmail.com";
         if(Email.equals(admin1) || Email.equals(admin2) || Email.equals(admin3)){
             isadmin=true;
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
      * if not, saves the email and password in firebase for future use (IF THW EMAIL IS NOT TAKEN !!!)
      */
     public void RegisterUser(){
-        String Email = email.getText().toString().trim();
+        final String Email = email.getText().toString().trim();
         String Password = password.getText().toString().trim();
         if (TextUtils.isEmpty(Email)){
             Toast.makeText(this, "A Field is Empty", Toast.LENGTH_SHORT).show();
@@ -125,15 +125,21 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         try {
-                            //check if successful
-                            if (task.isSuccessful()) {
-                                //User is successfully registered and logged in
-                                //start SignIn Activity here
+                            //User is Admin
+                            if (task.isSuccessful() && (isAdmin(Email))){//if login successful and user is admin
+                                currentUser = mAuth.getCurrentUser();
+                                startActivity(new Intent(getApplicationContext(),
+                                        AdminActivity.class));
+                            }
+                            //User is successfully registered and logged in
+                            //start SignIn Activity here
+                            else if(task.isSuccessful() && (!isAdmin(Email))){//if login successful and user is not admin
                                 Toast.makeText(MainActivity.this, "registration successful",
                                         Toast.LENGTH_SHORT).show();
                                 finish();
                                 startActivity(new Intent(getApplicationContext(), SignIn_Activity.class));
-                            }else{
+                            }
+                            else{
                                 Toast.makeText(MainActivity.this, "Couldn't register, try again",
                                         Toast.LENGTH_SHORT).show();
                             }

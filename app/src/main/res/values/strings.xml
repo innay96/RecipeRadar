@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">RecipeRadar</string>
     <string name="title_activity_try">tryActivity</string>
+    <string name="ingredients">Ingredients:</string>
+    <string name="name_of_the_recipe">Name Of The Recipe</string>
+    <string name="category_salad_cake_soup">Category: salad/ cake/ soup ...</string>
+    <string name="eggs">Eggs</string>
+    <string name="peanuts">Peanuts</string>
+    <string name="sugar">Sugar</string>
+    <string name="milk">Milk</string>
+    <string name="mushrooms">Mushrooms</string>
+    <string name="gluten">Gluten</string>
+    <string name="send">SEND</string>
 </resources>

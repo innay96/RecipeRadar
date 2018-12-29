@@ -16,7 +16,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:ems="10"
-        android:hint="Name Of The Recipe"
+        android:hint="@string/name_of_the_recipe"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -33,7 +33,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:ems="10"
-        android:hint="Category: salad/ cake/ soup ..."
+        android:hint="@string/category_salad_cake_soup"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -49,7 +49,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Ingredients:"
+        android:text="@string/ingredients"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.174"
@@ -63,7 +63,8 @@
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
         android:layout_marginTop="16dp"
-        android:text="Eggs"
+        android:text="@string/eggs"
+        android:onClick="selectItem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsText" />
 
@@ -76,7 +77,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="110dp"
         android:layout_marginRight="110dp"
-        android:text="Peanuts"
+        android:text="@string/peanuts"
+        android:onClick="selectItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsText" />
@@ -88,7 +90,8 @@
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
         android:layout_marginTop="56dp"
-        android:text="Sugar"
+        android:text="@string/sugar"
+        android:onClick="selectItem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsText" />
 
@@ -101,7 +104,8 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="135dp"
         android:layout_marginRight="135dp"
-        android:text="Milk"
+        android:text="@string/milk"
+        android:onClick="selectItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsText" />
@@ -113,7 +117,8 @@
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
         android:layout_marginTop="96dp"
-        android:text="Mushrooms"
+        android:text="@string/mushrooms"
+        android:onClick="selectItem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsText" />
 
@@ -126,7 +131,8 @@
         android:layout_marginTop="96dp"
         android:layout_marginEnd="118dp"
         android:layout_marginRight="118dp"
-        android:text="Gluten"
+        android:text="@string/gluten"
+        android:onClick="selectItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsText" />
@@ -140,9 +146,9 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="64dp"
         android:background="@color/colorAccent"
-        android:text="SEND"
+        android:text="@string/send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

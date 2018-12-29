@@ -5,28 +5,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import com.firebase.client.Firebase;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class AddingActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    private FirebaseUser user;
-    private TextView category;
-    private TextView recipeName;
-    private CheckBox eggs;
-    private CheckBox milk;
-    private CheckBox peanuts;
-    private CheckBox gluten;
-    private CheckBox mushrooms;
-    private CheckBox sugar;
+    private EditText category;
+    private EditText recipeName;
     private Button send;
-    private FirebaseDatabase database;
 
+    private ArrayList<String> recipesList =  new ArrayList<>(); // contains the value of the recipe (the ingredients)
+
+    private AdminActivity admin = new AdminActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,30 +27,62 @@ public class AddingActivity extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         category = findViewById(R.id.categoryText);
         recipeName = findViewById(R.id.recipeNameText);
-        eggs = findViewById(R.id.eggsCheckBox);
-        milk = findViewById(R.id.milkCheckBox);
-        peanuts = findViewById(R.id.peanutsCheckBox);
-        mushrooms = findViewById(R.id.mushroomsCheckBox);
-        sugar = findViewById(R.id.sugarCheckBox);
-        gluten = findViewById(R.id.glutenCheckBox);
         send = findViewById(R.id.sendBtn);
 
-        database = FirebaseDatabase.getInstance();
-        /**
-         * should be saved and sent to the ADMIN for verification , then be added to the database
-         */
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Log.d("myTag", category.toString());
-               // if(category.equals("Cakes") || category.equals("cakes")) {
-                  // mRef = new Firebase("https://reciperadar.firebaseio.com/Cakes");
-
-                DatabaseReference myRef = database.getReferenceFromUrl("https://reciperadar.firebaseio.com/Recipes");
-                myRef.setValue("lolo");
-
+                if (v == send){
+                    admin.addRecipe(recipesList, category, recipeName); // sends to the admin to get an approval
+                }
             }
         });
+    }
+
+    /**
+     * checks which checkbox was checked and adds it to the recipesList
+     * @param view
+     */
+    public void selectItem(View view){
+        boolean checked = ((CheckBox) view).isChecked();
+        switch(view.getId()){
+            case R.id.eggsCheckBox:
+                if(checked)
+                    recipesList.add("Eggs");
+                else
+                    recipesList.remove("Eggs");
+                break;
+            case R.id.milkCheckBox:
+                if(checked)
+                    recipesList.add("Milk");
+                else
+                    recipesList.remove("Milk");
+                break;
+            case R.id.peanutsCheckBox:
+                if(checked)
+                    recipesList.add("Peanuts");
+                else
+                    recipesList.remove("Peanuts");
+                break;
+            case R.id.mushroomsCheckBox:
+                if(checked)
+                    recipesList.add("Mushrooms");
+                else
+                    recipesList.remove("Mushrooms");
+                break;
+            case R.id.sugarCheckBox:
+                if(checked)
+                    recipesList.add("Sugar");
+                else
+                    recipesList.remove("Sugar");
+                break;
+            case R.id.glutenCheckBox:
+                if(checked)
+                    recipesList.add("Gluten");
+                else
+                    recipesList.remove("Gluten");
+                break;
+        }
 
     }
 }
