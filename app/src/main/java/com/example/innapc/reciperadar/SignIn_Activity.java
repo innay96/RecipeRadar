@@ -13,6 +13,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import static com.example.innapc.reciperadar.R.id.*;
+
 public class SignIn_Activity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -29,13 +31,13 @@ public class SignIn_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        email = (TextView)findViewById(R.id.nameEmail);
+        email = (TextView)findViewById(nameEmail);
         mAuth = FirebaseAuth.getInstance();
-        logout = (Button)findViewById(R.id.logoutBtn);
+        logout = (Button)findViewById(logoutBtn);
         user = mAuth.getCurrentUser();
-        addRecipe = (FloatingActionButton)findViewById(R.id.addBtn);
+        addRecipe = (FloatingActionButton)findViewById(addBtn);
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        show = (Button)findViewById(R.id.showBtn);
+
 
         /**
          * fill the name of the user after "hello"
