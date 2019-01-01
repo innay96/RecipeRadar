@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
-import static com.example.innapc.reciperadar.R.id.*;
+import static com.example.innapc.reciperadar.R.id.addBtn;
+import static com.example.innapc.reciperadar.R.id.logoutBtn;
+import static com.example.innapc.reciperadar.R.id.nameEmail;
 
 public class SignIn_Activity extends AppCompatActivity {
 
@@ -22,9 +22,6 @@ public class SignIn_Activity extends AppCompatActivity {
     private TextView email;
     private Button logout;
     private FloatingActionButton addRecipe;
-    private StorageReference mStorageRef;
-    private Button show;
-    private static final int GALLERY_INTENT = 2;
 
 
     @Override
@@ -36,7 +33,6 @@ public class SignIn_Activity extends AppCompatActivity {
         logout = (Button)findViewById(logoutBtn);
         user = mAuth.getCurrentUser();
         addRecipe = (FloatingActionButton)findViewById(addBtn);
-        mStorageRef = FirebaseStorage.getInstance().getReference();
 
 
         /**
@@ -73,40 +69,6 @@ public class SignIn_Activity extends AppCompatActivity {
                 }
             }
         });
-
-
-        /**
-         * should show the images of existed recipes
-         */
-        show.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if (v==show){
-                    Intent intent = new Intent(Intent.ACTION_PICK);
-                    intent.setType("image/*");
-                    startActivityForResult(intent,GALLERY_INTENT);
-                }
-            }
-
-        });
-       /* Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
-        StorageReference riversRef = mStorageRef.child("images/rivers.jpg");
-
-        riversRef.putFile(file)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // Get a URL to the uploaded content
-                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                        // ...
-                    }
-                });*/
 
     }
 }

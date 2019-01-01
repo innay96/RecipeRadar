@@ -83,4 +83,3 @@
         app:layout_constraintTop_toBottomOf="@+id/signUpBtn" />
 
 </android.support.constraint.ConstraintLayout>
-
