@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful() && (isAdmin(Email))){//if login successful and user is admin
                             currentUser = mAuth.getCurrentUser();
                             finish();
+
                             startActivity(new Intent(getApplicationContext(),
                                     AdminActivity.class));
                         }
