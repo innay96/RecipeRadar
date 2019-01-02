@@ -26,6 +26,8 @@ public class Recipe {
         how= String.valueOf(recipesDatabase.child(category.toString()).child(nameOf.toString()).child(how.toString()));
 
     }
-
+public String toString(){
+        return ( nameOf+" Ingrediants: "+ingredients+ " What to do: "+how);
+}
 
 }

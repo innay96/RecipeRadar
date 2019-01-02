@@ -1,25 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AdminActivity">
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="3dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/PendingBtn"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".AdminActivity"
+tools:layout_editor_absoluteY="81dp">
+
+<android.support.design.widget.FloatingActionButton
+    android:id="@+id/addBtn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:backgroundTint="@color/colorAccent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:srcCompat="@android:drawable/ic_input_add" />
+
+<TextView
+    android:id="@+id/nameEmail"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="16dp"
+    android:ems="10"
+    android:inputType="none"
+    android:selectAllOnFocus="false"
+    android:singleLine="false"
+    android:textSize="18sp"
+    app:layout_constraintStart_toEndOf="@+id/helloText"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<TextView
+    android:id="@+id/helloText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginTop="16dp"
+    android:text="Hello "
+    android:textSize="18sp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<Button
+    android:id="@+id/logoutBtn"
+    style="@android:style/Widget.DeviceDefault.Light.Button"
+    android:layout_width="79dp"
+    android:layout_height="35dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="14dp"
+    android:layout_marginRight="14dp"
+    android:text="LOG OUT"
+    android:textSize="12sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toEndOf="@+id/nameEmail"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<TextView
+    android:id="@+id/textView"
+    android:layout_width="290dp"
+    android:layout_height="40dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="128dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginRight="8dp"
+    android:text="Please mark the ingrediantes that you do not want to see in your recipe:"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<CheckBox
+    android:id="@+id/eggsCheckBox"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="58dp"
+    android:layout_marginLeft="58dp"
+    android:layout_marginTop="16dp"
+    android:text="@string/eggs"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+<CheckBox
+    android:id="@+id/peanutsCheckBox"
+    android:layout_width="wrap_content"
+    android:layout_height="31dp"
+    android:layout_marginStart="192dp"
+    android:layout_marginLeft="192dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="110dp"
+    android:layout_marginRight="110dp"
+    android:text="@string/peanuts"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+<CheckBox
+    android:id="@+id/sugarCheckBox"
+    android:layout_width="wrap_content"
+    android:layout_height="34dp"
+    android:layout_marginStart="58dp"
+    android:layout_marginLeft="58dp"
+    android:layout_marginTop="56dp"
+    android:text="@string/sugar"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+<CheckBox
+    android:id="@+id/milkCheckBox"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="192dp"
+    android:layout_marginLeft="192dp"
+    android:layout_marginTop="56dp"
+    android:layout_marginEnd="135dp"
+    android:layout_marginRight="135dp"
+    android:text="@string/milk"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+<CheckBox
+    android:id="@+id/mushroomsCheckBox"
+    android:layout_width="wrap_content"
+    android:layout_height="34dp"
+    android:layout_marginStart="58dp"
+    android:layout_marginLeft="58dp"
+    android:layout_marginTop="96dp"
+    android:text="@string/mushrooms"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+<CheckBox
+    android:id="@+id/glutenCheckBox"
+    android:layout_width="wrap_content"
+    android:layout_height="28dp"
+    android:layout_marginStart="192dp"
+    android:layout_marginLeft="192dp"
+    android:layout_marginTop="98dp"
+    android:layout_marginEnd="118dp"
+    android:layout_marginRight="118dp"
+    android:text="@string/gluten"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+<Button
+    android:id="@+id/searchButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="64dp"
+    android:text="SEARCH"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+<Button
+    android:id="@+id/button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="8dp"
+    android:text="Pending"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/addBtn"
+    app:layout_constraintHorizontal_bias="0.034"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/searchButton"
+    app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>

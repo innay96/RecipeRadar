@@ -59,12 +59,15 @@ public class SignIn_Activity extends AppCompatActivity {
         addRecipe = (FloatingActionButton)findViewById(addBtn);
         search= (Button)findViewById(searchButton);
 
+/**
         gluten=(CheckBox)findViewById(R.id.glutenCheckBox);
         gluten.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked){ noGluten=true;
         dontEat.add("Gluten"); }
+        else {noGluten=false;
+            dontEat.remove("Gluten");}
     }
 
 });
@@ -74,6 +77,8 @@ public class SignIn_Activity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {noMilk=true;
                     dontEat.add("Milk");}
+                else {noMilk=false;
+                    dontEat.remove("Milk");}
             }
 
         });
@@ -84,6 +89,8 @@ public class SignIn_Activity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){ noEggs=true;
                     dontEat.add("Eggs");}
+                else {noEggs=false;
+                    dontEat.remove("Eggs");}
             }
 
         });
@@ -93,6 +100,8 @@ public class SignIn_Activity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {noPeanuts=true;
                     dontEat.add("Peanuts");}
+                else {noPeanuts=false;
+                    dontEat.remove("Peanuts");}
             }
 
         });
@@ -102,6 +111,8 @@ public class SignIn_Activity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {noSugar=true;
                     dontEat.add("Sugar");}
+                else {noSugar=false;
+                    dontEat.remove("Sugar");}
             }
 
         });
@@ -111,11 +122,13 @@ public class SignIn_Activity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {noMushrooms=true;
                     dontEat.add("Mushrooms");}
+                    else {noMushrooms=false;
+                    dontEat.remove("Mushrooms");}
             }
 
         });
 
-
+**/
 
         /**
          * fill the name of the user after "hello"
