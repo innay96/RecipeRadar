@@ -13,7 +13,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AddingActivity extends AppCompatActivity {
+public class Adding_AdminActivity extends AppCompatActivity {
     private EditText category;
     private EditText recipeName;
     private EditText prepare;
@@ -25,7 +25,7 @@ public class AddingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adding);
+        setContentView(R.layout.activity_adding__admin);
         Firebase.setAndroidContext(this);
         category = findViewById(R.id.categoryText);
         recipeName = findViewById(R.id.recipeNameText);
@@ -37,21 +37,21 @@ public class AddingActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v == send){
-                    recipesDatabase = FirebaseDatabase.getInstance().getReference().child("Pending").child(category.getText().toString())
+                if (v == send) {
+                    recipesDatabase = FirebaseDatabase.getInstance().getReference().child("Recipes").child(category.getText().toString())
                             .child(recipeName.getText().toString());
                     recipesDatabase.child("Ingredients").setValue(ingredient.getText().toString())
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(AddingActivity.this,"Item was added successfully!!",
+                                    Toast.makeText(Adding_AdminActivity.this, "Item was added successfully!!",
                                             Toast.LENGTH_LONG).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(Exception e) {
-                                    Toast.makeText(AddingActivity.this,"Failed adding item",
+                                    Toast.makeText(Adding_AdminActivity.this, "Failed adding item",
                                             Toast.LENGTH_LONG).show();
                                 }
                             });
@@ -59,14 +59,14 @@ public class AddingActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(AddingActivity.this,"Item was added successfully!!",
+                                    Toast.makeText(Adding_AdminActivity.this, "Item was added successfully!!",
                                             Toast.LENGTH_LONG).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(Exception e) {
-                                    Toast.makeText(AddingActivity.this,"Failed adding item",
+                                    Toast.makeText(Adding_AdminActivity.this, "Failed adding item",
                                             Toast.LENGTH_LONG).show();
                                 }
                             });
@@ -74,22 +74,19 @@ public class AddingActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(AddingActivity.this,"Item was added successfully!!",
+                                    Toast.makeText(Adding_AdminActivity.this, "Item was added successfully!!",
                                             Toast.LENGTH_LONG).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(Exception e) {
-                                    Toast.makeText(AddingActivity.this,"Failed adding item",
+                                    Toast.makeText(Adding_AdminActivity.this, "Failed adding item",
                                             Toast.LENGTH_LONG).show();
                                 }
                             });
                 }
             }
         });
-
-
     }
-
 }

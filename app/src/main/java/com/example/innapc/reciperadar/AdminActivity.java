@@ -4,24 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.client.Firebase;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static com.example.innapc.reciperadar.R.id.PendingBtn;
@@ -29,7 +21,6 @@ import static com.example.innapc.reciperadar.R.id.addBtn;
 import static com.example.innapc.reciperadar.R.id.logoutBtn;
 import static com.example.innapc.reciperadar.R.id.nameEmail;
 import static com.example.innapc.reciperadar.R.id.searchButton;
-import static com.example.innapc.reciperadar.R.id.search_button;
 
 public class AdminActivity extends AppCompatActivity {
     private DatabaseReference recipesDatabase; // connector between the app and the database
@@ -67,7 +58,7 @@ public class AdminActivity extends AppCompatActivity {
         search = (Button) findViewById(searchButton);
         pending = (Button) findViewById(PendingBtn);
 
-        gluten = (CheckBox) findViewById(R.id.glutenCheckBox);
+       /* gluten = (CheckBox) findViewById(R.id.glutenCheckBox);
         gluten.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -166,7 +157,7 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (v == addRecipe) {
-                    startActivity(new Intent(getApplicationContext(), AddingActivity.class));
+                    startActivity(new Intent(getApplicationContext(), Adding_AdminActivity.class));
                 }
             }
         });
@@ -183,9 +174,9 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
 
-/**
- * searches the recipes that we want
- */
+        /**
+         * searches the recipes that we want
+         */
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -199,32 +190,5 @@ public class AdminActivity extends AppCompatActivity {
     }
     static ArrayList<String> getDontEat () {
         return dontEat;
-    }
-
-
-
-    /**
-     * adds the recipe to the Database
-     * the tree goes like this:
-     * Recipes ---> NameOfCategory ---> NameOfRecipe ---> recipeList (the ingredients)
-     */
-    public void addRecipe(ArrayList<String> ingredients, EditText category, EditText recipeName){
-
-        recipesDatabase = FirebaseDatabase.getInstance().getReference().child("Recipes").child(category.getText().toString()).child(recipeName.getText().toString());
-        recipesDatabase.setValue(ingredients)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(AdminActivity.this,"Item was added successfully!!",
-                                Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(Exception e) {
-                        Toast.makeText(AdminActivity.this,"Failed adding item",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
     }
 }

@@ -25,7 +25,8 @@
         <activity android:name=".AddingActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".ResultsActivity" />
-        <activity android:name=".PendingActivity"></activity>
+        <activity android:name=".PendingActivity" />
+        <activity android:name=".Adding_AdminActivity"></activity>
     </application>
 
 </manifest>
