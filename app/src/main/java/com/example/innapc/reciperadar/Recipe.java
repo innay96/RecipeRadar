@@ -1,8 +1,6 @@
 package com.example.innapc.reciperadar;
-import android.util.Log;
-
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Recipe {
 
@@ -22,7 +20,6 @@ public class Recipe {
 
     }
     public Recipe( DatabaseReference a){
-       // recipesDatabase= FirebaseDatabase.getInstance().getReference().child("Recipes");
         category= String.valueOf(a.child(category.toString()));
         nameOf= String.valueOf(recipesDatabase.child(category.toString()).child(nameOf.toString()));
         ingredients= String.valueOf(recipesDatabase.child(category.toString()).child(nameOf.toString()).child(ingredients.toString()));
