@@ -22,7 +22,7 @@ public class ResultsActivity extends AppCompatActivity {
     FirebaseDatabase database;
     public DatabaseReference recipesDatabase;
     private ArrayList<String> dontWant= SignIn_Activity.getDontEat();
-    private ArrayList<String> results;
+    private ArrayList<String> results= new ArrayList<String>();
     private  boolean isOk;
     private ListView lv;
 
@@ -39,7 +39,8 @@ public class ResultsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     for (int i = 0; i < dataSnapshot.getChildrenCount(); i++) {
-                        Recipe reci = new Recipe(recipesDatabase);
+                        //Recipe reci = new Recipe(recipesDatabase);
+                        Recipe reci = dataSnapshot.getValue(Recipe.class);
                         isOk = true;
                         for (int j = 0; j < dontWant.size() && isOk; j++)
                             if (reci.ingredients.contains(dontWant.get(j)))
@@ -56,7 +57,7 @@ public class ResultsActivity extends AppCompatActivity {
             }
             TextView textView5=null;
             textView5.setText(ans);
-         **/
+         */
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

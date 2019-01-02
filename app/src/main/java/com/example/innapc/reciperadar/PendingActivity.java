@@ -2,104 +2,206 @@ package com.example.innapc.reciperadar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.ChildEventListener;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import static com.example.innapc.reciperadar.R.id.AcceptBtn;
-import static com.example.innapc.reciperadar.R.id.DeclineBtn;
-import static com.example.innapc.reciperadar.R.id.PendingText;
+import static com.example.innapc.reciperadar.R.id.PendingBtn;
+import static com.example.innapc.reciperadar.R.id.addBtn;
 import static com.example.innapc.reciperadar.R.id.logoutBtn;
 import static com.example.innapc.reciperadar.R.id.nameEmail;
-
+import static com.example.innapc.reciperadar.R.id.searchButton;
+import static com.example.innapc.reciperadar.R.id.search_button;
 
 public class PendingActivity extends AppCompatActivity {
+
     private DatabaseReference recipesDatabase; // connector between the app and the database
-    private Button Accept;
-    private Button Decline;
-    private TextView Pending_Recipe;
-    public Firebase productsDatabase;
-    private ListView productsListView;
-    private ArrayList<String> productsList = new ArrayList<>();
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private TextView email;
+    private Button logout;
+    private Button search;
+    private Button pending;
+    private FloatingActionButton addRecipe;
+    private CheckBox gluten;
+    private CheckBox milk;
+    private CheckBox peanuts;
+    private CheckBox eggs;
+    private CheckBox sugar;
+    private CheckBox mushrooms;
+    public boolean noMilk=false;
+    public boolean noGluten=false;
+    public boolean noPeanuts=false;
+    public boolean noEggs=false;
+    public boolean noSugar=false;
+    public boolean noMushrooms=false;
+    static public ArrayList<String> dontEat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_pending);
-        Pending_Recipe = (TextView)findViewById(PendingText);
-        Accept = (Button)findViewById(AcceptBtn);
-        Decline = (Button)findViewById(DeclineBtn);
-        productsDatabase = new Firebase("https://reciperadar.firebaseio.com/Pending");
-        productsListView = (ListView) findViewById(R.id.listView);
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, productsList);
+        email = (TextView) findViewById(nameEmail);
+        mAuth = FirebaseAuth.getInstance();
+        logout = (Button) findViewById(logoutBtn);
+        user = mAuth.getCurrentUser();
+        addRecipe = (FloatingActionButton) findViewById(addBtn);
+        search = (Button) findViewById(searchButton);
+        pending = (Button) findViewById(PendingBtn);
 
-        productsListView.setAdapter(arrayAdapter);
-
-        productsDatabase.addChildEventListener(new ChildEventListener() {
+       /* gluten = (CheckBox) findViewById(R.id.glutenCheckBox);
+        gluten.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onChildAdded(com.firebase.client.DataSnapshot dataSnapshot, String s) {
-
-                Map<String, Object> lubna = (Map<String, Object>) dataSnapshot.getValue();
-
-                HashMap<String, String> result = new HashMap<>();
-                String name = lubna.keySet().toString();
-
-                result.put(dataSnapshot.getKey(), name.substring(1, name.indexOf("]")));
-                productsList.add(result.toString().substring(1, result.toString().indexOf("}")));
-                arrayAdapter.notifyDataSetChanged();
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    noGluten = true;
+                    dontEat.add("Gluten");
+                }
             }
 
+        });
+        milk = (CheckBox) findViewById(R.id.milkCheckBox);
+        milk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onChildChanged(com.firebase.client.DataSnapshot dataSnapshot, String s) {
-
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    noMilk = true;
+                    dontEat.add("Milk");
+                }
             }
 
-            @Override
-            public void onChildRemoved(com.firebase.client.DataSnapshot dataSnapshot) {
+        });
 
+        eggs = (CheckBox) findViewById(R.id.eggsCheckBox);
+        eggs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    noEggs = true;
+                    dontEat.add("Eggs");
+                }
             }
 
+        });
+        peanuts = (CheckBox) findViewById(R.id.peanutsCheckBox);
+        peanuts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onChildMoved(com.firebase.client.DataSnapshot dataSnapshot, String s) {
-
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    noPeanuts = true;
+                    dontEat.add("Peanuts");
+                }
             }
 
+        });
+        sugar = (CheckBox) findViewById(R.id.sugarCheckBox);
+        sugar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    noSugar = true;
+                    dontEat.add("Sugar");
+                }
             }
+
+        });
+        mushrooms = (CheckBox) findViewById(R.id.mushroomsCheckBox);
+        mushrooms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    noMushrooms = true;
+                    dontEat.add("Mushrooms");
+                }
+            }
+
         });
 
 
-        Accept.setOnClickListener(new View.OnClickListener() {
+        /**
+         * fill the name of the user after "hello"
+         */
+        if (user != null) {
+            String Email = user.getEmail();
+            email.setText(Email);
+        }
+
+        /**
+         * logs out and return to the main menu
+         */
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v == Accept) {
-                    //  addRecipe(ArrayList<String> ingredients, EditText category, EditText recipeName)
+                if (v == logout) {
+                    if (user != null) {
+                        mAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
+                }
+            }
+        });
+
+        /**
+         * the plus button , goes to the "add recipe" menu
+         */
+        addRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v == addRecipe) {
+                    startActivity(new Intent(getApplicationContext(), AddingActivity.class));
+                }
+            }
+        });
+
+        /*
+         * the pending button, goes to see if there are pending recipes
+         */
+        pending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v == pending) {
+                    startActivity(new Intent(getApplicationContext(), AdminActivity.class));
+                }
+            }
+        });
+
+/**
+ * searches the recipes that we want
+ */
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v == search) {
+                    if (user != null) {
+                        startActivity(new Intent(getApplicationContext(), ResultsActivity.class));
+                    }
                 }
             }
         });
     }
-
-
+    static ArrayList<String> getDontEat () {
+        return dontEat;
+    }
 
 
 

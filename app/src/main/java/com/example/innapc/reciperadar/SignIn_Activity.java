@@ -43,7 +43,7 @@ public class SignIn_Activity extends AppCompatActivity {
     public boolean noEggs=false;
     public boolean noSugar=false;
     public boolean noMushrooms=false;
-    static public ArrayList<String> dontEat;
+    static public ArrayList<String> dontEat= new ArrayList<String>();
 
 
     @Override
@@ -59,7 +59,9 @@ public class SignIn_Activity extends AppCompatActivity {
         addRecipe = (FloatingActionButton)findViewById(addBtn);
         search= (Button)findViewById(searchButton);
 
-/**
+
+
+
         gluten=(CheckBox)findViewById(R.id.glutenCheckBox);
         gluten.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
     @Override
@@ -128,7 +130,7 @@ public class SignIn_Activity extends AppCompatActivity {
 
         });
 
-**/
+
 
         /**
          * fill the name of the user after "hello"

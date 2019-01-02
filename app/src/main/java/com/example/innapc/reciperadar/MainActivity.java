@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                             finish();
 
                             startActivity(new Intent(getApplicationContext(),
-                                    AdminActivity.class));
+                                    PendingActivity.class));
                         }
                         else if(task.isSuccessful() && (!isAdmin(Email))){//if login successful and user is not admin
                             currentUser = mAuth.getCurrentUser();
