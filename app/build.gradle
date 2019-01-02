@@ -32,8 +32,6 @@ dependencies {
     implementation 'com.firebase:firebase-client-android:2.5.0'
     implementation 'com.google.firebase:firebase-auth:16.1.0'
     implementation "com.google.android.gms:play-services-gcm:16.0.0"
-    implementation 'com.google.firebase:firebase-storage:16.0.5'
-    implementation 'com.squareup.picasso:picasso:2.71828'
 }
 
 apply plugin: 'com.google.gms.google-services'
