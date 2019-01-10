@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,14 +13,12 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static com.example.innapc.reciperadar.R.id.addBtn;
 import static com.example.innapc.reciperadar.R.id.logoutBtn;
 import static com.example.innapc.reciperadar.R.id.nameEmail;
 import static com.example.innapc.reciperadar.R.id.searchButton;
-import static com.example.innapc.reciperadar.R.id.search_button;
 
 public class SignIn_Activity extends AppCompatActivity {
 
@@ -59,18 +56,20 @@ public class SignIn_Activity extends AppCompatActivity {
         addRecipe = (FloatingActionButton)findViewById(addBtn);
         search= (Button)findViewById(searchButton);
 
-/**
+        dontEat = new ArrayList<>();
+
+
         gluten=(CheckBox)findViewById(R.id.glutenCheckBox);
         gluten.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if(isChecked){ noGluten=true;
-        dontEat.add("Gluten"); }
-        else {noGluten=false;
-            dontEat.remove("Gluten");}
-    }
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if(isChecked){ noGluten=true;
+            dontEat.add("Gluten"); }
+            else {noGluten=false;
+                dontEat.remove("Gluten");}
+        }
 
-});
+        });
         milk=(CheckBox)findViewById(R.id.milkCheckBox);
         milk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -128,7 +127,6 @@ public class SignIn_Activity extends AppCompatActivity {
 
         });
 
-**/
 
         /**
          * fill the name of the user after "hello"
@@ -173,6 +171,7 @@ public class SignIn_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 if (v==search){
                     if (user != null) {
+                        ResultsActivity.setIdentity("Sign");
                         startActivity(new Intent(getApplicationContext(), ResultsActivity.class));
                     }
                 }

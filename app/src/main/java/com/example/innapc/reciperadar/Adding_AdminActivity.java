@@ -70,21 +70,6 @@ public class Adding_AdminActivity extends AppCompatActivity {
                                             Toast.LENGTH_LONG).show();
                                 }
                             });
-                    recipesDatabase.child("Name").setValue(recipeName.getText().toString())
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(Adding_AdminActivity.this, "Item was added successfully!!",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(Exception e) {
-                                    Toast.makeText(Adding_AdminActivity.this, "Failed adding item",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            });
                 }
             }
         });

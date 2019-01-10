@@ -100,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
         String admin1="inna.yakubov1996@gmail.com";
         String admin2="annaharonov@gmail.com";
         String admin3="orenisabella@gmail.com";
-        if(Email.equals(admin1) || Email.equals(admin2) || Email.equals(admin3)){
+        String admin4="admin@gmail.com";
+        if(Email.equals(admin1) || Email.equals(admin2) || Email.equals(admin3) || Email.equals(admin4)){
             isadmin=true;
         }
         return isadmin;

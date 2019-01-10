@@ -2,6 +2,7 @@ package com.example.innapc.reciperadar;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -68,8 +69,13 @@ public class PendingActivity extends AppCompatActivity {
                 int i = 0;
                 for (String childKey: lubna.keySet()) {
                     Map<String, Object> currentLubnaObject = (Map<String, Object>) lubna.get(childKey);
+
+                    Log.d("aIsCurr ", n[i].toString());
                     Ingredients.put(n[i],currentLubnaObject.toString().substring(currentLubnaObject.toString().indexOf("=")+1, currentLubnaObject.toString().indexOf("Prepare")-2));
                     Preparation.put(n[i],currentLubnaObject.toString().substring(currentLubnaObject.toString().indexOf("Prepare=")+8,currentLubnaObject.toString().indexOf("}")));
+
+                    Log.d("aIsIne ", Ingredients.values().toString());
+                    Log.d("aIsPre ", Preparation.toString());
                     i++;
                 }
 
@@ -170,21 +176,6 @@ public class PendingActivity extends AppCompatActivity {
                     }
                 });
         recipesDatabase.child("Prepare").setValue(prepation.get(recipeName))
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(PendingActivity.this,"Item was added successfully!!",
-                                Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(Exception e) {
-                        Toast.makeText(PendingActivity.this,"Failed adding item",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-        recipesDatabase.child("Name").setValue(recipeName)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

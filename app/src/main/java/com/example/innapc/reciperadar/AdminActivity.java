@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
@@ -58,70 +59,72 @@ public class AdminActivity extends AppCompatActivity {
         search = (Button) findViewById(searchButton);
         pending = (Button) findViewById(PendingBtn);
 
-       /* gluten = (CheckBox) findViewById(R.id.glutenCheckBox);
+        dontEat = new ArrayList<>();
+
+        gluten=(CheckBox)findViewById(R.id.glutenCheckBox);
         gluten.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    noGluten = true;
-                    dontEat.add("Gluten");
-                }
+                if(isChecked){ noGluten=true;
+                    dontEat.add("Gluten"); }
+                else {noGluten=false;
+                    dontEat.remove("Gluten");}
             }
 
         });
-        milk = (CheckBox) findViewById(R.id.milkCheckBox);
+        milk=(CheckBox)findViewById(R.id.milkCheckBox);
         milk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    noMilk = true;
-                    dontEat.add("Milk");
-                }
+                if(isChecked) {noMilk=true;
+                    dontEat.add("Milk");}
+                else {noMilk=false;
+                    dontEat.remove("Milk");}
             }
 
         });
 
-        eggs = (CheckBox) findViewById(R.id.eggsCheckBox);
+        eggs=(CheckBox)findViewById(R.id.eggsCheckBox);
         eggs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    noEggs = true;
-                    dontEat.add("Eggs");
-                }
+                if(isChecked){ noEggs=true;
+                    dontEat.add("Eggs");}
+                else {noEggs=false;
+                    dontEat.remove("Eggs");}
             }
 
         });
-        peanuts = (CheckBox) findViewById(R.id.peanutsCheckBox);
+        peanuts=(CheckBox)findViewById(R.id.peanutsCheckBox);
         peanuts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    noPeanuts = true;
-                    dontEat.add("Peanuts");
-                }
+                if(isChecked) {noPeanuts=true;
+                    dontEat.add("Peanuts");}
+                else {noPeanuts=false;
+                    dontEat.remove("Peanuts");}
             }
 
         });
-        sugar = (CheckBox) findViewById(R.id.sugarCheckBox);
+        sugar=(CheckBox)findViewById(R.id.sugarCheckBox);
         sugar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    noSugar = true;
-                    dontEat.add("Sugar");
-                }
+                if(isChecked) {noSugar=true;
+                    dontEat.add("Sugar");}
+                else {noSugar=false;
+                    dontEat.remove("Sugar");}
             }
 
         });
-        mushrooms = (CheckBox) findViewById(R.id.mushroomsCheckBox);
+        mushrooms=(CheckBox)findViewById(R.id.mushroomsCheckBox);
         mushrooms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    noMushrooms = true;
-                    dontEat.add("Mushrooms");
-                }
+                if(isChecked) {noMushrooms=true;
+                    dontEat.add("Mushrooms");}
+                else {noMushrooms=false;
+                    dontEat.remove("Mushrooms");}
             }
 
         });
@@ -182,6 +185,7 @@ public class AdminActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (v == search) {
                     if (user != null) {
+                        ResultsActivity.setIdentity("Admin");
                         startActivity(new Intent(getApplicationContext(), ResultsActivity.class));
                     }
                 }
