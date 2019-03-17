@@ -38,38 +38,53 @@ public class AddingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (v == send){
-                    recipesDatabase = FirebaseDatabase.getInstance().getReference().child("Pending").child(category.getText().toString())
-                            .child(recipeName.getText().toString());
-                    recipesDatabase.child("Ingredients").setValue(ingredient.getText().toString())
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(AddingActivity.this,"Item was added successfully!!",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(Exception e) {
-                                    Toast.makeText(AddingActivity.this,"Failed adding item",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    recipesDatabase.child("Prepare").setValue(prepare.getText().toString())
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(AddingActivity.this,"Item was added successfully!!",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(Exception e) {
-                                    Toast.makeText(AddingActivity.this,"Failed adding item",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            });
+                    if(category.getText().toString().equals(""))
+                        Toast.makeText(AddingActivity.this, "Category is null!",
+                                Toast.LENGTH_LONG).show();
+                    else if(recipeName.getText().toString().equals(""))
+                        Toast.makeText(AddingActivity.this, "Name is null!",
+                                Toast.LENGTH_LONG).show();
+                    else if(ingredient.getText().toString().equals(""))
+                        Toast.makeText(AddingActivity.this, "Ingredient is null!",
+                                Toast.LENGTH_LONG).show();
+                    else if(prepare.getText().toString().equals(""))
+                        Toast.makeText(AddingActivity.this, "Prepare is null!",
+                                Toast.LENGTH_LONG).show();
+                    else {
+                        recipesDatabase = FirebaseDatabase.getInstance().getReference().child("Pending").child(category.getText().toString())
+                                .child(recipeName.getText().toString());
+                        recipesDatabase.child("Ingredients").setValue(ingredient.getText().toString())
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(AddingActivity.this,"Item was added successfully!!",
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(Exception e) {
+                                        Toast.makeText(AddingActivity.this,"Failed adding item",
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                        recipesDatabase.child("Prepare").setValue(prepare.getText().toString())
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(AddingActivity.this,"Item was added successfully!!",
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(Exception e) {
+                                        Toast.makeText(AddingActivity.this,"Failed adding item",
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                });
+
+                    }
                 }
             }
         });

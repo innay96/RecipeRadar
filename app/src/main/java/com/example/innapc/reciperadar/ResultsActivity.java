@@ -64,6 +64,7 @@ public class ResultsActivity extends AppCompatActivity {
                 int i = 0;
                 for (String childKey: lubna.keySet()) {
                     Map<String, Object> currentLubnaObject = (Map<String, Object>) lubna.get(childKey);
+                    Log.d("checkPending", currentLubnaObject.toString().substring(currentLubnaObject.toString().indexOf("=")+1, currentLubnaObject.toString().indexOf("Prepare")-2));
                     Ingredients.put(n[i],currentLubnaObject.toString().substring(currentLubnaObject.toString().indexOf("=")+1, currentLubnaObject.toString().indexOf("Prepare")-2));
                     Preparation.put(n[i],currentLubnaObject.toString().substring(currentLubnaObject.toString().indexOf("Prepare=")+8,currentLubnaObject.toString().indexOf("}")));
                     for (int j = 0; j < dontWant.size() && isOk; j++) {
@@ -78,10 +79,7 @@ public class ResultsActivity extends AppCompatActivity {
                     }
                     isOk = true;
                     i++;
-                    Log.d("aIsIne ", Ingredients.toString());
-                    Log.d("aIsPre ", Preparation.toString());
-                    Log.d("aIs ", results.toString());
-                }
+                   }
 
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -126,8 +124,7 @@ public class ResultsActivity extends AppCompatActivity {
 
     }
     public static String getNameRec(){
-        Log.d("getName",nameRecipe);
-        return nameRecipe;
+         return nameRecipe;
     }
     public static HashMap<String, String> getCate(){
         return result;

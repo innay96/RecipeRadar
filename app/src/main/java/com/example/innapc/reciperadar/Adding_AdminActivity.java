@@ -38,38 +38,52 @@ public class Adding_AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (v == send) {
-                    recipesDatabase = FirebaseDatabase.getInstance().getReference().child("Recipes").child(category.getText().toString())
-                            .child(recipeName.getText().toString());
-                    recipesDatabase.child("Ingredients").setValue(ingredient.getText().toString())
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(Adding_AdminActivity.this, "Item was added successfully!!",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(Exception e) {
-                                    Toast.makeText(Adding_AdminActivity.this, "Failed adding item",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    recipesDatabase.child("Prepare").setValue(prepare.getText().toString())
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(Adding_AdminActivity.this, "Item was added successfully!!",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(Exception e) {
-                                    Toast.makeText(Adding_AdminActivity.this, "Failed adding item",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            });
+                    if(category.getText().toString().equals(""))
+                        Toast.makeText(Adding_AdminActivity.this, "Category is null!",
+                                Toast.LENGTH_LONG).show();
+                    else if(recipeName.getText().toString().equals(""))
+                        Toast.makeText(Adding_AdminActivity.this, "Name is null!",
+                                Toast.LENGTH_LONG).show();
+                    else if(ingredient.getText().toString().equals(""))
+                        Toast.makeText(Adding_AdminActivity.this, "Ingredient is null!",
+                                Toast.LENGTH_LONG).show();
+                    else if(prepare.getText().toString().equals(""))
+                        Toast.makeText(Adding_AdminActivity.this, "Prepare is null!",
+                                Toast.LENGTH_LONG).show();
+                    else {
+                        recipesDatabase = FirebaseDatabase.getInstance().getReference().child("Recipes").child(category.getText().toString())
+                                .child(recipeName.getText().toString());
+                        recipesDatabase.child("Ingredients").setValue(ingredient.getText().toString())
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(Adding_AdminActivity.this, "Item was added successfully!!",
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(Exception e) {
+                                        Toast.makeText(Adding_AdminActivity.this, "Failed adding item",
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                        recipesDatabase.child("Prepare").setValue(prepare.getText().toString())
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(Adding_AdminActivity.this, "Item was added successfully!!",
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(Exception e) {
+                                        Toast.makeText(Adding_AdminActivity.this, "Failed adding item",
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                    }
                 }
             }
         });
