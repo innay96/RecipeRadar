@@ -4,24 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 import static com.example.innapc.reciperadar.R.id.addBtn;
 import static com.example.innapc.reciperadar.R.id.logoutBtn;
 import static com.example.innapc.reciperadar.R.id.nameEmail;
-import static com.example.innapc.reciperadar.R.id.searchButton;
-import static com.example.innapc.reciperadar.R.id.search_button;
 
 public class SignIn_Activity extends AppCompatActivity {
 
@@ -29,107 +21,18 @@ public class SignIn_Activity extends AppCompatActivity {
     private FirebaseUser user;
     private TextView email;
     private Button logout;
-    private Button search;
     private FloatingActionButton addRecipe;
-    private CheckBox gluten;
-    private CheckBox milk;
-    private CheckBox peanuts;
-    private CheckBox eggs;
-    private CheckBox sugar;
-    private CheckBox mushrooms;
-    public boolean noMilk=false;
-    public boolean noGluten=false;
-    public boolean noPeanuts=false;
-    public boolean noEggs=false;
-    public boolean noSugar=false;
-    public boolean noMushrooms=false;
-    static public ArrayList<String> dontEat= new ArrayList<String>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
-
         email = (TextView)findViewById(nameEmail);
         mAuth = FirebaseAuth.getInstance();
         logout = (Button)findViewById(logoutBtn);
         user = mAuth.getCurrentUser();
         addRecipe = (FloatingActionButton)findViewById(addBtn);
-        search= (Button)findViewById(searchButton);
-
-
-
-
-        gluten=(CheckBox)findViewById(R.id.glutenCheckBox);
-        gluten.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if(isChecked){ noGluten=true;
-        dontEat.add("Gluten"); }
-        else {noGluten=false;
-            dontEat.remove("Gluten");}
-    }
-
-});
-        milk=(CheckBox)findViewById(R.id.milkCheckBox);
-        milk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {noMilk=true;
-                    dontEat.add("Milk");}
-                else {noMilk=false;
-                    dontEat.remove("Milk");}
-            }
-
-        });
-
-        eggs=(CheckBox)findViewById(R.id.eggsCheckBox);
-        eggs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){ noEggs=true;
-                    dontEat.add("Eggs");}
-                else {noEggs=false;
-                    dontEat.remove("Eggs");}
-            }
-
-        });
-        peanuts=(CheckBox)findViewById(R.id.peanutsCheckBox);
-        peanuts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {noPeanuts=true;
-                    dontEat.add("Peanuts");}
-                else {noPeanuts=false;
-                    dontEat.remove("Peanuts");}
-            }
-
-        });
-        sugar=(CheckBox)findViewById(R.id.sugarCheckBox);
-        sugar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {noSugar=true;
-                    dontEat.add("Sugar");}
-                else {noSugar=false;
-                    dontEat.remove("Sugar");}
-            }
-
-        });
-        mushrooms=(CheckBox)findViewById(R.id.mushroomsCheckBox);
-        mushrooms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {noMushrooms=true;
-                    dontEat.add("Mushrooms");}
-                    else {noMushrooms=false;
-                    dontEat.remove("Mushrooms");}
-            }
-
-        });
-
 
 
         /**
@@ -167,21 +70,5 @@ public class SignIn_Activity extends AppCompatActivity {
             }
         });
 
-/**
- * searches the recipes that we want
- */
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (v==search){
-                    if (user != null) {
-                        startActivity(new Intent(getApplicationContext(), ResultsActivity.class));
-                    }
-                }
-            }
-        });
-    }
-    static ArrayList<String> getDontEat(){
-        return dontEat;
     }
 }
