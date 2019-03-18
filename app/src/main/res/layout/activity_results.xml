@@ -2,10 +2,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-<<<<<<< HEAD
-=======
-    android:id="@+id/resultsList"
->>>>>>> origin/master
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ResultsActivity">
@@ -25,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<<<<<<< HEAD
     <ListView
         android:id="@+id/resultsView"
         android:layout_width="wrap_content"
@@ -38,15 +33,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-=======
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="320dp"
-        android:layout_height="388dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="107dp" />
->>>>>>> origin/master
 
 
 </android.support.constraint.ConstraintLayout>

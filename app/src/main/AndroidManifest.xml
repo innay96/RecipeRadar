@@ -23,7 +23,11 @@
         </activity>
         <activity android:name=".SignIn_Activity" />
         <activity android:name=".AddingActivity" />
-        <activity android:name=".AdminActivity"></activity>
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".ResultsActivity" />
+        <activity android:name=".PendingActivity" />
+        <activity android:name=".Adding_AdminActivity" />
+        <activity android:name=".RecipeActivity"></activity>
     </application>
 
 </manifest>
